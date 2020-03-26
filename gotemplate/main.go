@@ -9,6 +9,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/Masterminds/sprig"
 	"gopkg.in/yaml.v2"
 )
 
@@ -78,7 +79,7 @@ func (a arguments) processTemplate(context map[string]interface{}) (finalError e
 	}
 	defer closeWithError(out)
 
-	tmpl, err := template.New("template").Delims(a.leftDelim, a.rightDelim).Parse(string(data))
+	tmpl, err := template.New("template").Funcs(sprig.TxtFuncMap()).Delims(a.leftDelim, a.rightDelim).Parse(string(data))
 	if err != nil {
 		return fmt.Errorf("failed to parse template: %v", err)
 	}

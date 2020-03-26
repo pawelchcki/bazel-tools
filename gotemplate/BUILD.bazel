@@ -6,6 +6,7 @@ go_library(
     importpath = "github.com/atlassian/bazel-tools/gotemplate",
     visibility = ["//visibility:private"],
     deps = [
+        "@com_github_masterminds_sprig//:go_default_library",
         "@in_gopkg_yaml_v2//:go_default_library",
     ],
 )
